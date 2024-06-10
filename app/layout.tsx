@@ -1,8 +1,18 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
+import { Navbar } from "@/components/navbar";
 
-const inter = Inter({ subsets: ["latin"] });
+const cloisterBlack = localFont({
+  src: "./fonts/CloisterBlack.ttf",
+  variable: "--font-cloister-black",
+});
+
+const lora = localFont({
+  src: "./fonts/Lora-VariableFont_wght.ttf",
+  variable: "--font-lora",
+  weight: "400 500 600 700",
+});
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -16,7 +26,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body
+        className={`${lora.variable} ${cloisterBlack.variable} max-w-[1200px] mx-auto`}>
+        <Navbar />
+        {children}
+      </body>
     </html>
   );
 }
