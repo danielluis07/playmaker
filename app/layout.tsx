@@ -1,11 +1,19 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
-import { Navbar } from "@/components/navbar";
+import { Footer } from "@/components/footer";
+import { Header } from "@/components/header/header";
+import { SheetProvider } from "@/providers/sheet-provider";
+import { QueryProvider } from "@/providers/query-provider";
 
 const cloisterBlack = localFont({
   src: "./fonts/CloisterBlack.ttf",
   variable: "--font-cloister-black",
+});
+
+const merriweatherSans = localFont({
+  src: "./fonts/MerriweatherSans-VariableFont_wght.ttf",
+  variable: "--font-merriweather-sans",
 });
 
 const lora = localFont({
@@ -27,9 +35,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${lora.variable} ${cloisterBlack.variable} max-w-[1200px] mx-auto`}>
-        <Navbar />
-        {children}
+        className={`${lora.variable} ${cloisterBlack.variable} ${merriweatherSans.variable} max-w-[1920px] mx-auto`}>
+        <QueryProvider>
+          <Header />
+          <SheetProvider />
+          {children}
+          <Footer />
+        </QueryProvider>
       </body>
     </html>
   );

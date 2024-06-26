@@ -25,6 +25,7 @@ const config = {
           "linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 49%, rgba(255,255,255,0) 100%)",
       },
       screens: {
+        mmd: "890px",
         maxsm: { max: "640px" },
         maxmd: { max: "768px" },
         maxlg: { max: "1024px" },
@@ -84,6 +85,7 @@ const config = {
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        "scale-5s": "scale 5s ease-in-out infinite",
       },
     },
   },

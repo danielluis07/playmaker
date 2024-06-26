@@ -12,10 +12,58 @@ body {
   font-family: var(--font-lora);
 }
 
+.post-content p {
+  margin-bottom: 16px; /* Adjust the gap between paragraphs as needed */
+}
+
+.post-content h1 {
+  font-size: 2em;
+  font-weight: bold;
+}
+
+.post-content h2 {
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
+.post-content h3 {
+  font-size: 1.17em;
+  font-weight: bold;
+}
+
+.post-content h4 {
+  font-size: 1em;
+  font-weight: bold;
+}
+
+.post-content h5 {
+  font-size: 0.83em;
+  font-weight: bold;
+}
+
+.post-content h6 {
+  font-size: 0.67em;
+  font-weight: bold;
+}
+
+.first-character {
+  font-size: 4.5em; /* Increase the font size of the first character */
+  font-weight: bold; /* Make the first character bold */
+  float: left; /* Make the first character float to the left */
+  line-height: 1; /* Adjust line height if needed */
+  margin-right: 8px; /* Adjust the space between the first character and the rest of the text */
+}
+
 .logo {
   font-family: var(--font-cloister-black);
-  font-size: xx-large;
+  font-size: 48px;
   cursor: pointer;
+}
+
+.navbar-font {
+  font-family: var(--font-merriweather-sans);
+  font-weight: 400;
+  font-size: 13px;
 }
 
 @layer base {
@@ -89,4 +137,17 @@ body {
   body {
     @apply bg-background text-foreground;
   }
+}
+
+@keyframes scaleUp {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.5);
+  }
+}
+
+.scale-animation {
+  animation: scaleUp 20s forwards;
 }
