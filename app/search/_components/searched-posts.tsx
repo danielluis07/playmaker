@@ -13,30 +13,34 @@ import { PulseLoader } from "react-spinners";
 import Link from "next/link";
 
 type Post = {
-  post: {
-    id: string;
-    title: string;
-    shortDescription: string | null;
-    description: string;
-    imageUrl: string | null;
-    content: string;
-    isPublished: boolean;
-    isFeatured: boolean;
-    likes: number;
-    userId: string;
-    createdAt: Date;
-    updatedAt: Date;
-  };
-  user: {
-    id: string;
-    email: string;
-    name: string;
-    image: string;
-    role: string;
-    emailVerified: boolean;
-    createdAt: Date;
-    updatedAt: Date;
-  };
+  data: Array<{
+    post: {
+      id: string;
+      title: string;
+      shortDescription: string | null;
+      description: string;
+      imageUrl: string | null;
+      content: string;
+      isPublished: boolean;
+      isFeatured: boolean;
+      league: string;
+      postType: string;
+      likes: number;
+      userId: string;
+      createdAt: Date;
+      updatedAt: Date;
+    };
+    user: {
+      id: string;
+      email: string;
+      name: string;
+      image: string;
+      role: string;
+      emailVerified: boolean;
+      createdAt: Date;
+      updatedAt: Date;
+    };
+  }>;
 };
 
 type SearchedPosts = {
@@ -48,7 +52,7 @@ export const SearchedPosts = ({ searchQuery }: SearchedPosts) => {
     searchQuery
   );
   const searchedPostsQuery = getSearchedPosts(query);
-  const data: Post[] = searchedPostsQuery.data;
+  const data: Post = searchedPostsQuery.data;
   const router = useRouter();
   const ref = useRef<HTMLInputElement>(null);
 
@@ -86,7 +90,7 @@ export const SearchedPosts = ({ searchQuery }: SearchedPosts) => {
           </button>
         </form>
       </div>
-      {data.length === 0 ? (
+      {data.data.length === 0 ? (
         <div className="flex justify-center items-center mt-14 h-[300px]">
           <h1 className="text-2xl text-gray-400">
             Não há resultados para sua pesquisa
@@ -94,14 +98,14 @@ export const SearchedPosts = ({ searchQuery }: SearchedPosts) => {
         </div>
       ) : (
         <div className="mt-14">
-          {data.length === 1 ? (
-            <h1>Há {data.length} resultado para sua pesquisa</h1>
+          {data.data.length === 1 ? (
+            <h1>Há {data.data.length} resultado para sua pesquisa</h1>
           ) : (
-            <h1>Há {data.length} resultados para sua pesquisa</h1>
+            <h1>Há {data.data.length} resultados para sua pesquisa</h1>
           )}
           <Separator className="w-full my-5" />
           <div className="space-y-8">
-            {data.map((item, index) => (
+            {data.data.map((item, index) => (
               <div className="flex items-center md:items-stretch" key={index}>
                 <div className="relative h-32 min-w-32 md:min-w-60 md:h-48 order-last md:order-first">
                   <Image
