@@ -4,6 +4,7 @@ import { ColumnDef } from "@tanstack/react-table";
 import Image from "next/image";
 import placeholder from "@/public/images/placeholder-logo.jpg";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 export type Items = {
   id: string;
@@ -93,8 +94,6 @@ export const columns: ColumnDef<Items>[] = [
     accessorKey: "headshot.href",
     header: "Jogador",
     cell: ({ row }) => {
-      const router = useRouter();
-
       if (!row.original.headshot) {
         return (
           <div className="flex items-center space-x-3">
@@ -126,10 +125,10 @@ export const columns: ColumnDef<Items>[] = [
               sizes="100px"
             />
           </div>
-          <div
-            className="cursor-pointer"
-            onClick={() => router.push(`/nfl/athletes/${row.original.id}`)}>
-            <span>{row.original.fullName}</span>
+          <div>
+            <Link href={`/nfl/athletes/${row.original.id}`}>
+              <span>{row.original.fullName}</span>
+            </Link>
           </div>
         </div>
       );

@@ -60,7 +60,7 @@ export const MainPageCarousel = ({ posts }: MainPageCarouselProps) => {
       if (!emblaApi) return;
       emblaApi.scrollTo(index);
     },
-    [emblaApi, posts.data.length]
+    [emblaApi]
   );
 
   useEffect(() => {
