@@ -104,7 +104,7 @@ export const MainPageCarousel = ({ posts }: MainPageCarouselProps) => {
                         </div>
                         <Link href={`/post/${item.post.id}`}>
                           <button className="py-1 px-3 rounded-lg border border-white bg-white text-black hover:bg-transparent hover:text-white transition-colors">
-                            Read More
+                            Ler mais
                           </button>
                         </Link>
                       </div>
