@@ -30,6 +30,10 @@ const nextConfig = {
         protocol: "https",
         hostname: "cdn.nba.com",
       },
+      {
+        protocol: "https",
+        hostname: "avatars.githubusercontent.com",
+      },
     ],
   },
 };

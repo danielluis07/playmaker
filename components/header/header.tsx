@@ -2,6 +2,8 @@ import Link from "next/link";
 import { Navbar } from "@/components/header/navbar";
 import { MenuMobile } from "@/components/header/menu-mobile";
 import { Search } from "@/components/header/search";
+import { Social } from "./social";
+import { Login } from "./login";
 
 export const Header = () => {
   return (
@@ -11,7 +13,10 @@ export const Header = () => {
         <span className="logo">
           <Link href="/">Playmaker</Link>
         </span>
-        <Search />
+        <div className="flex gap-x-2">
+          <Login />
+          <Search />
+        </div>
       </div>
       <Navbar />
     </div>
