@@ -1586,3 +1586,283 @@ type NbaRoster = {
     standingSummary: string;
   };
 };
+
+type GamesByDate = {
+  leagues: Array<{
+    id: string;
+    uid: string;
+    name: string;
+    abbreviation: string;
+    slug: string;
+    season: {
+      year: number;
+      startDate: string;
+      endDate: string;
+      displayName: string;
+      type: {
+        id: string;
+        type: number;
+        name: string;
+        abbreviation: string;
+      };
+    };
+    logos: Array<{
+      href: string;
+      width: number;
+      height: number;
+      alt: string;
+      rel: string[];
+      lastUpdated: string;
+    }>;
+    calendarType: string;
+    calendarIsWhitelist: boolean;
+    calendarStartDate: string;
+    calendarEndDate: string;
+    calendar: Array<{
+      label: string;
+      value: string;
+      startDate: string;
+      endDate: string;
+      entries: Array<{
+        label: string;
+        alternateLabel: string;
+        detail: string;
+        value: string;
+        startDate: string;
+        endDate: string;
+      }>;
+    }>;
+  }>;
+  events: Array<{
+    id: string;
+    uid: string;
+    date: string;
+    name: string;
+    shortName: string;
+    season: {
+      year: number;
+      type: number;
+      slug: string;
+    };
+    week: {
+      number: number;
+    };
+    competitions: Array<{
+      id: string;
+      uid: string;
+      date: string;
+      attendance: number;
+      type: {
+        id: string;
+        abbreviation: string;
+      };
+      timeValid: boolean;
+      neutralSite: boolean;
+      conferenceCompetition: boolean;
+      playByPlayAvailable: boolean;
+      recent: boolean;
+      venue: {
+        id: string;
+        fullName: string;
+        address: {
+          city: string;
+          state: string;
+        };
+        indoor: boolean;
+      };
+      competitors: Array<{
+        id: string;
+        uid: string;
+        type: string;
+        order: number;
+        homeAway: string;
+        team: {
+          id: string;
+          uid: string;
+          location: string;
+          name: string;
+          abbreviation: string;
+          displayName: string;
+          shortDisplayName: string;
+          color: string;
+          alternateColor: string;
+          isActive: boolean;
+          venue: {
+            id: string;
+          };
+          links: Array<{
+            rel: string[];
+            href: string;
+            text: string;
+            isExternal: boolean;
+            isPremium: boolean;
+          }>;
+          logo: string;
+        };
+        score: string;
+        statistics: [];
+        records: Array<{
+          name: string;
+          abbreviation?: string;
+          type: string;
+          summary: string;
+        }>;
+      }>;
+      notes: [];
+      status: {
+        clock: number;
+        displayClock: string;
+        period: number;
+        type: {
+          id: string;
+          name: string;
+          state: string;
+          completed: boolean;
+          description: string;
+          detail: string;
+          shortDetail: string;
+        };
+        isTBDFlex: boolean;
+      };
+      broadcasts: Array<{
+        market: string;
+        names: string[];
+      }>;
+      format: {
+        regulation: {
+          periods: number;
+        };
+      };
+      tickets: Array<{
+        summary: string;
+        numberAvailable: number;
+        links: Array<{
+          href: string;
+        }>;
+      }>;
+      startDate: string;
+      geoBroadcasts: Array<{
+        type: {
+          id: string;
+          shortName: string;
+        };
+        market: {
+          id: string;
+          type: string;
+        };
+        media: {
+          shortName: string;
+        };
+        lang: string;
+        region: string;
+      }>;
+      odds: Array<{
+        provider: {
+          id: string;
+          name: string;
+          priority: number;
+        };
+        details: string;
+        overUnder: number;
+        spread: number;
+        awayTeamOdds: {
+          favorite: boolean;
+          underdog: boolean;
+          team: {
+            id: string;
+            uid: string;
+            abbreviation: string;
+            name: string;
+            displayName: string;
+            logo: string;
+          };
+        };
+        homeTeamOdds: {
+          favorite: boolean;
+          underdog: boolean;
+          team: {
+            id: string;
+            uid: string;
+            abbreviation: string;
+            name: string;
+            displayName: string;
+            logo: string;
+          };
+        };
+        open: {
+          over: {
+            value: number;
+            displayValue: string;
+            alternateDisplayValue: string;
+            decimal: number;
+            fraction: string;
+            american: string;
+          };
+          under: {
+            value: number;
+            displayValue: string;
+            alternateDisplayValue: string;
+            decimal: number;
+            fraction: string;
+            american: string;
+          };
+          total: {
+            alternateDisplayValue: string;
+            american: string;
+          };
+        };
+        current: {
+          over: {
+            value: number;
+            displayValue: string;
+            alternateDisplayValue: string;
+            decimal: number;
+            fraction: string;
+            american: string;
+          };
+          under: {
+            value: number;
+            displayValue: string;
+            alternateDisplayValue: string;
+            decimal: number;
+            fraction: string;
+            american: string;
+          };
+          total: {
+            alternateDisplayValue: string;
+            american: string;
+          };
+        };
+      }>;
+    }>;
+    links: Array<{
+      language: string;
+      rel: string[];
+      href: string;
+      text: string;
+      shortText: string;
+      isExternal: boolean;
+      isPremium: boolean;
+    }>;
+    weather: {
+      displayValue: string;
+      temperature: number;
+      highTemperature: number;
+      conditionId: string;
+    };
+    status: {
+      clock: number;
+      displayClock: string;
+      period: number;
+      type: {
+        id: string;
+        name: string;
+        state: string;
+        completed: boolean;
+        description: string;
+        detail: string;
+        shortDetail: string;
+      };
+    };
+  }>;
+};

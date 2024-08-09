@@ -51,31 +51,32 @@ export const FeaturedPosts = ({ data }: FeaturedPostsProps) => {
               src={item.post.imageUrl ? item.post.imageUrl : placeholder}
               alt={item.post.title}
               fill
+              className="object-cover"
             />
           </div>
-          <div className="mt-2">
-            <span className="text-white text-[10px] rounded-md bg-black p-1 mt-4">
+          <div className="mt-2 flex flex-col h-[200px] justify-between">
+            <span className="text-white text-[10px] rounded-md bg-black p-1 w-min">
               {item.post.postType}
             </span>
-            <div className="space-y-2 mt-2">
+            <div className="mt-2">
               <Link href={`/post/${item.post.id}`}>
-                <h2 className="text-xl font-bold hover:underline">
+                <h2 className="text-xl font-bold hover:underline line-clamp-2">
                   {item.post.title}
                 </h2>
               </Link>
-              <div className="flex items-center text-[12px] space-x-2">
-                <span>{item.user.name}</span>
-                <span>·</span>
-                <span>
-                  {format(new Date(item.post.createdAt), "dd/MM/yyyy", {
-                    locale: ptBR,
-                  })}
-                </span>
-              </div>
-              <p className="line-clamp-2 text-sm">
-                {item.post.shortDescription}
-              </p>
             </div>
+            <div className="flex items-center text-[12px] space-x-2 mt-2">
+              <span>{item.user.name}</span>
+              <span>·</span>
+              <span>
+                {format(new Date(item.post.createdAt), "dd/MM/yyyy", {
+                  locale: ptBR,
+                })}
+              </span>
+            </div>
+            <p className="line-clamp-2 text-sm mt-2">
+              {item.post.shortDescription}
+            </p>
           </div>
         </div>
       ))}
