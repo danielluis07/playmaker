@@ -1,3 +1,5 @@
+declare module "react-heart";
+
 type Teams = {
   sports: Array<{
     id: string;
@@ -1117,6 +1119,21 @@ type Standings = {
     isExternal: boolean;
     isPremium: boolean;
   }>;
+};
+
+type PostComment = {
+  commentId: string;
+  text: string;
+  authorId: string;
+  authorName: string;
+  createdAt: string;
+  updatedAt: string;
+  userId: string;
+  email: string;
+  imageUrl: string;
+  name: string;
+  userRole: "USER" | "ADMIN"; // Assuming userRole can be either "USER" or "ADMIN"
+  emailVerified: string;
 };
 
 type NbaStandings = {

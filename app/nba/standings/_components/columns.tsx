@@ -82,7 +82,12 @@ export const columns: ColumnDef<TeamStandings>[] = [
         return (
           <div className="flex items-center space-x-3">
             <div className="relative size-10">
-              <Image src={placeholder} fill alt="time" sizes="56px" />
+              <Image
+                src={placeholder}
+                fill
+                alt="time"
+                sizes="(max-width: 480px) 10vw, (max-width: 768px) 5vw, 2.5rem"
+              />
             </div>
             <div>
               <span>{row.original.team.displayName}</span>

@@ -51,7 +51,7 @@ export const FeaturedPosts = ({ data }: FeaturedPostsProps) => {
               src={item.post.imageUrl ? item.post.imageUrl : placeholder}
               alt={item.post.title}
               fill
-              className="object-cover"
+              sizes="100vw"
             />
           </div>
           <div className="mt-2 flex flex-col h-[200px] justify-between">

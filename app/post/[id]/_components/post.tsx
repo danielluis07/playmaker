@@ -2,10 +2,26 @@
 
 import Image from "next/image";
 import placeholder from "@/public/images/image-placeholder.jpg";
+import Heart from "react-heart";
 import { format } from "date-fns";
 import { ptBR } from "date-fns/locale/pt-BR";
 import { Separator } from "@/components/ui/separator";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { Comments } from "./comments";
+import { FaXTwitter } from "react-icons/fa6";
+import { FaFacebook } from "react-icons/fa6";
+import { FaLinkedin } from "react-icons/fa6";
+import { Skeleton } from "@/components/ui/skeleton";
+import {
+  FacebookShareButton,
+  TwitterShareButton,
+  LinkedinShareButton,
+} from "react-share";
+import { useGetLikes } from "@/queries/get-likes";
+import { useCreateLikes } from "@/queries/use-create-like";
+import { useRemoveLikes } from "@/queries/use-remove-likes";
+import { useSession } from "next-auth/react";
+import { useHasUserLiked } from "@/queries/get-user-liked";
 
 type Post = {
   post: {
@@ -39,6 +55,23 @@ type PostProps = {
 };
 
 export const Post = ({ data }: PostProps) => {
+  const user = useSession();
+  const likesQuery = useGetLikes(data.data.post.id);
+  const likesCount: number = likesQuery.data;
+  const hasUserLikedQuery = useHasUserLiked(
+    data.data.post.id,
+    user.data?.user?.id
+  );
+  const hasUserLiked = hasUserLikedQuery.data;
+  const createLikeMutation = useCreateLikes(
+    data.data.post.id,
+    user.data?.user?.id
+  );
+  const removeLikeMutation = useRemoveLikes(
+    data.data.post.id,
+    user.data?.user?.id
+  );
+
   useEffect(() => {
     const contentElement = document.querySelector(".post-content");
     if (contentElement) {
@@ -51,14 +84,40 @@ export const Post = ({ data }: PostProps) => {
     }
   }, []);
 
+  useEffect(() => {
+    if (data) {
+      fetch(
+        `${process.env.NEXT_PUBLIC_APP_URL}/api/public/posts/${data.data.post.id}/views`,
+        {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      )
+        .then((response) => response.json())
+        .catch((error) =>
+          console.error("Error incrementing view count:", error)
+        );
+    }
+  }, [data]);
+
+  const onClick = () => {
+    if (hasUserLiked) {
+      removeLikeMutation.mutate();
+    } else {
+      createLikeMutation.mutate();
+    }
+  };
+
   return (
-    <div className="w-full">
+    <div className="w-full px-3">
       <div className="relative w-full h-96 brightness-50">
         <Image
           src={data.data.post.imageUrl ? data.data.post.imageUrl : placeholder}
           alt={data.data.post.title}
           fill
-          className="object-cover"
+          sizes="100%"
         />
       </div>
       <div className="mt-4 space-y-4 px-3 xl:px-0">
@@ -80,10 +139,46 @@ export const Post = ({ data }: PostProps) => {
       <Separator className="my-10 px-3 xl:px-0" />
       <div className="flex">
         <div
-          className="flex flex-col xl:w-5/6 xl:mx-auto gap-y-5 px-3 xl:pr-2 post-content"
+          className="flex flex-col gap-y-5 post-content"
           dangerouslySetInnerHTML={{ __html: data.data.post.content }}
         />
       </div>
+
+      <Separator className="mt-10 mb-5 px-3 xl:px-0" />
+
+      <div className="flex justify-between items-center px-3 xl:px-2">
+        <div className="flex items-center space-x-4 text-gray-500">
+          <FacebookShareButton
+            url={`${process.env.NEXT_PUBLIC_APP_URL}/post/${data.data.post.id}`}
+            title={data.data.post.title}>
+            <FaFacebook size={32} />
+          </FacebookShareButton>
+          <TwitterShareButton
+            url={`${process.env.NEXT_PUBLIC_APP_URL}/post/${data.data.post.id}`}
+            title={data.data.post.title}>
+            <FaXTwitter size={32} />
+          </TwitterShareButton>
+          <LinkedinShareButton
+            url={`${process.env.NEXT_PUBLIC_APP_URL}/post/${data.data.post.id}`}
+            title={data.data.post.title}>
+            <FaLinkedin size={32} />
+          </LinkedinShareButton>
+        </div>
+        {likesQuery.isLoading ? (
+          <Skeleton className="w-14 h-8" />
+        ) : (
+          <div className="flex items-center space-x-2">
+            <div className="w-8">
+              <Heart isActive={hasUserLiked} onClick={onClick} />
+            </div>
+            <span className="ml-2">Likes ({likesCount})</span>
+          </div>
+        )}
+      </div>
+
+      <Separator className="my-10 px-3 xl:px-0" />
+
+      <Comments postId={data.data.post.id} />
     </div>
   );
 };

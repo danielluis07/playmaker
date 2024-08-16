@@ -103,7 +103,7 @@ export const columns: ColumnDef<Items>[] = [
                 fill
                 alt="jogador"
                 className="object-cover"
-                sizes="56px"
+                sizes="(max-width: 480px) 12vw, (max-width: 768px) 7vw, 3.5rem"
               />
             </div>
             <span>{row.original.fullName}</span>

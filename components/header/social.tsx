@@ -15,13 +15,20 @@ export const Social = () => {
     });
   };
   return (
-    <div className="flex justify-center items-center w-full">
+    <div className="flex flex-col sm:flex-row items-center w-full gap-x-2 gap-y-4">
+      <Button
+        size="lg"
+        className="w-full"
+        variant="outline"
+        onClick={() => onClick("google")}>
+        <FcGoogle className="h-5 w-5" />
+      </Button>
       <Button
         size="lg"
         className="w-full"
         variant="outline"
         onClick={() => onClick("github")}>
-        <FaGithub className="size-5" />
+        <FaGithub className="h-5 w-5" />
       </Button>
     </div>
   );

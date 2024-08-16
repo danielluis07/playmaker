@@ -5,6 +5,7 @@ import { getGamesByDate } from "@/queries/nfl/get-games-by-date";
 import { format } from "date-fns";
 import { useRouter } from "next/navigation";
 import { FaPlus } from "react-icons/fa6";
+import { Skeleton } from "@/components/ui/skeleton";
 
 export const Headlines = () => {
   const date = format(new Date(), "yyyyMMdd");
@@ -13,10 +14,10 @@ export const Headlines = () => {
   const router = useRouter();
 
   if (gamesByDateQuery.isLoading)
-    return <div className="w-[350px] h-[612px]">loading...</div>;
+    return <Skeleton className="w-[350px] h-[612px]" />;
 
   return (
-    <div className="w-[350px] h-[612px] border maxlg:hidden">
+    <div className="w-[350px] h-[612px] border maxlg:hidden overflow-auto">
       <div className="p-2">
         <h2 className="font-bold text-center">Jogos de hoje</h2>
       </div>
@@ -31,7 +32,7 @@ export const Headlines = () => {
               </span>
             </div>
 
-            <div className="flex items-center justify-between space-x-5 w-56 sm:w-64 md:w-80 lg:w-[460px]">
+            <div className="flex items-center justify-between space-x-4 w-56 sm:w-64 md:w-80 lg:w-[460px]">
               <div className="flex justify-end items-center w-full">
                 <div className="flex flex-col lg:flex-row items-center">
                   <div
@@ -65,7 +66,7 @@ export const Headlines = () => {
                     </div>
                   </div>
                 </div>
-                <span className="w-5 text-lg text-center font-bold">
+                <span className="w-3 text-lg text-center font-bold">
                   {item.status.type.completed
                     ? item.competitions[0].competitors[1].score
                     : null}
@@ -77,7 +78,7 @@ export const Headlines = () => {
               </div>
 
               <div className="flex items-center w-full">
-                <span className="w-5 text-lg text-center font-bold">
+                <span className="w-3 text-lg text-center font-bold">
                   {item.status.type.completed
                     ? item.competitions[0].competitors[0].score
                     : null}
@@ -112,10 +113,6 @@ export const Headlines = () => {
                   </div>
                 </div>
               </div>
-            </div>
-
-            <div>
-              <FaPlus />
             </div>
           </div>
         ))}

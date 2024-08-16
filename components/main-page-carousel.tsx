@@ -88,6 +88,7 @@ export const MainPageCarousel = ({ posts }: MainPageCarouselProps) => {
                     alt={item.post.title}
                     layout="fill"
                     priority
+                    sizes="100vw"
                     className={cn(
                       "object-cover",
                       selectedIndex === index && "scale-animation"

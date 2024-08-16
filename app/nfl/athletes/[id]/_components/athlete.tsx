@@ -24,11 +24,21 @@ export const Athlete = ({ data }: AthleteProps) => {
       <div className="flex flex-col md:flex-row">
         {!data.headshot ? (
           <div className="relative w-96 h-56 maxmd:mx-auto">
-            <Image src={placeholder} alt="player" fill />
+            <Image
+              src={placeholder}
+              alt="player"
+              fill
+              sizes="(max-width: 480px) 90vw, (max-width: 768px) 70vw, (max-width: 1024px) 50vw, 24rem"
+            />
           </div>
         ) : (
           <div className="relative w-96 h-56 maxmd:mx-auto">
-            <Image src={data.headshot.href} alt={data.headshot.alt} fill />
+            <Image
+              src={data.headshot.href}
+              alt={data.headshot.alt}
+              fill
+              sizes="(max-width: 480px) 90vw, (max-width: 768px) 70vw, (max-width: 1024px) 50vw, 24rem"
+            />
           </div>
         )}
         <div className="px-5 mt-8 md:mt-0 w-full">
