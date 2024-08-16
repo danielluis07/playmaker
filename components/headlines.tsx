@@ -21,6 +21,13 @@ export const Headlines = () => {
       <div className="p-2">
         <h2 className="font-bold text-center">Jogos de hoje</h2>
       </div>
+      {data.events.length === 0 && (
+        <div className="flex justify-center items-center h-1/2">
+          <h2 className="text-center text-gray-400">
+            Não há jogos marcados para hoje
+          </h2>
+        </div>
+      )}
       <div className="space-y-4 mt-10">
         {data.events.map((item, index) => (
           <div
