@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { SearchSheet } from "@/components/search-sheet";
+import { ExitModal } from "@/modals/exit-modal";
 
 export const SheetProvider = () => {
   const [isMounted, setIsMounted] = useState(false);
@@ -16,6 +17,7 @@ export const SheetProvider = () => {
 
   return (
     <>
+      <ExitModal />
       <SearchSheet />
     </>
   );

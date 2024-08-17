@@ -15,7 +15,7 @@ import {
 
 import { Social } from "./social";
 import { auth } from "@/auth";
-import { Logout } from "./logout";
+import { LogoutButton } from "../auth/logout-button";
 
 export const Login = async () => {
   const session = await auth();
@@ -34,7 +34,7 @@ export const Login = async () => {
             </div>
           </PopoverTrigger>
           <PopoverContent className="w-24">
-            <Logout />
+            <LogoutButton />
           </PopoverContent>
         </Popover>
       ) : (

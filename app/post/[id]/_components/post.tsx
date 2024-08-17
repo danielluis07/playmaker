@@ -22,6 +22,7 @@ import { useCreateLikes } from "@/queries/use-create-like";
 import { useRemoveLikes } from "@/queries/use-remove-likes";
 import { useSession } from "next-auth/react";
 import { useHasUserLiked } from "@/queries/get-user-liked";
+import { toast } from "sonner";
 
 type Post = {
   post: {
@@ -72,6 +73,8 @@ export const Post = ({ data }: PostProps) => {
     user.data?.user?.id
   );
 
+  console.log(user, "user");
+
   useEffect(() => {
     const contentElement = document.querySelector(".post-content");
     if (contentElement) {
@@ -103,6 +106,11 @@ export const Post = ({ data }: PostProps) => {
   }, [data]);
 
   const onClick = () => {
+    if (!user.data) {
+      toast.error("Você precisa estar logado para curtir o post");
+      return;
+    }
+
     if (hasUserLiked) {
       removeLikeMutation.mutate();
     } else {
