@@ -22,7 +22,7 @@ export const useCreateLikes = (postId: string, userId: string | undefined) => {
       const previousLikes = queryClient.getQueryData(["likes", postId]); // count
       const previousHasLikes = queryClient.getQueryData(["has-likes", postId]); // boolean
 
-      queryClient.setQueryData(["likes", postId], (old) => {
+      queryClient.setQueryData(["likes", postId], (old: any) => {
         // Check if 'old' is a valid number, otherwise initialize it to 0
         const currentLikes = typeof old === "number" ? old : 0;
         return currentLikes + 1;

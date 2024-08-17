@@ -13,7 +13,7 @@ export default async function Home() {
 
   return (
     <div className="max-w-[1200px] mx-auto mt-24 lg:mt-36">
-      <div className="flex flex-col md:flex-row md:gap-x-2">
+      <div className="flex flex-col xl:flex-row md:gap-x-2">
         <MainPageCarousel posts={featuredPosts} />
         <Headlines />
       </div>
