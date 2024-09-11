@@ -98,7 +98,7 @@ export const Schedule = () => {
                       )
                     }>
                     <span className="maxlg:hidden pr-4">
-                      {item.competitions[0].competitors[0].team.name ??
+                      {item.competitions[0].competitors[1].team.name ??
                         "Commanders"}
                     </span>
                   </div>
